@@ -5,6 +5,7 @@ tcl/
 parse_git_log.py
 parsed_log.md
 bin/
+Twisted-18.4.0-cp36-cp36m-win_amd64.whl
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
