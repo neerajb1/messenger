@@ -1,19 +1,42 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <h3>Thread for {% if user != object.first %}{{ object.first }}{% else %}{{ object.second }}{% endif %}</h3>
-<ul id='chat-items'>
+<ul id='chat-items' style='list-style-type:none'>
+<div class = 'row'>
+
+  <div id="msg-list-div" class="col-md-8 align-self-center">
+
 {% for chat in object.chatmessage_set.all %}
+{% if chat.user == request.user %}
+<hr>
+<li class="text-right" >{{ chat.message }} via {{ chat.user }}</li>
 
-<li>{{ chat.message }} via {{ chat.user }}</li>
+{% else %}
+<hr>
+<li class="text-left" >{{ chat.message }} via {{ chat.user }}</li>
 
+{% endif %}
 {% endfor %}
+<hr>
+<script>
+var chatlist = document.getElementById('msg-list-div');
+chatlist.scrollTop = chatlist.scrollHeight;
+</script>
+</div>
+</div>
+
 </ul>
 
+<div class="form-row">
+    <div class="col-8">
 <form id='form' method='POST'> {% csrf_token %}
 {{form.as_p }}
 <input type='submit' class='btn btn-primary'/>
 </form>
+</div>
+</div>
 
 {% endblock %}
 
@@ -30,11 +53,9 @@ $(document).ready(function(){
     var socket = new WebSocket(webSocketEndpoint)
 
     socket.onmessage = function(e){
-        console.log('message', e)
-        // alert(e.data)
+
         var msgData = JSON.parse(e.data)
-        console.log(msgData)
-        chatItems.append(`<li>${msgData.msg} via ${msgData.user}</li>`)
+        chatItems.append(${msgData.msg} via ${msgData.user})
     }
 
     socket.onopen = function(e){

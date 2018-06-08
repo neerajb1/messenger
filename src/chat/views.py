@@ -3,11 +3,11 @@ from django.http import Http404, HttpResponseForbidden
 from django.shortcuts import render
 from django.urls import reverse
 from django.views.generic.edit import FormMixin
-
 from django.views.generic import DetailView, ListView
 
 from .forms import ComposeForm
 from .models import Thread, ChatMessage
+
 
 
 class InboxView(LoginRequiredMixin, ListView):
