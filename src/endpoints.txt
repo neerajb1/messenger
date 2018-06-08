@@ -1,0 +1,21 @@
+Admin page :
+  http://127.0.0.1:8000/admin/
+  --For login and registration
+
+Messages:
+  http://127.0.0.1:8000/messages/<notloggedusername>
+
+  """For simplicity created messages end point other than the user logged in. If user will
+  tried to user there username if will give error
+  """
+  ex: if userlogged in neeraj then he has to open
+  http://127.0.0.1:8000/messages/sourabh/
+
+
+Users:
+  superuser_name = neeraj
+  Password = P@ssw0rd
+
+
+  staff_user : sourabh
+  Password : P@ssw0rd
